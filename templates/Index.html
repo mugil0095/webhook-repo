@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GitHub Events</title>
+  </head>
+  <body>
+    <h1>GitHub Events</h1>
+    <ul>
+      {% for event in events %}
+        {% if event.action == 'pull_request' %}
+          <li>
+            {{ event.author }} submitted a pull request from {{ event.from_branch }} to {{ event.to_branch }} on {{ event.timestamp.strftime('%d %B %Y - %H:%M:%S') }}
+          </li>
+        {% elif event.action == 'push' %}
+          <li>
+            {{ event.author }} pushed to {{ event.to_branch }} on {{ event.timestamp.strftime('%d %B %Y - %H:%M:%S') }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </body>
+</html>
